@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = { 
-      txt: '',
+      txt: 'My new color',
       red: 0,
       green: 0,
       blue: 0
@@ -23,8 +23,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
-      {this.state.txt}
+      <div className="card-block">
         <Widget txt={this.state.txt} update={this.update} />
         <hr />
         <Slider ref="red" update={this.update} />
@@ -41,6 +40,7 @@ class App extends React.Component {
   }
 }
 
+/* Color Slider */
 class Slider extends React.Component {
   render() {
     return(
@@ -58,12 +58,24 @@ class Slider extends React.Component {
 const Widget = (props) => {
   return (
       <div>
-        <h1> Type below to change! </h1>
+        <h1> Name your new color! </h1>
         <input type="text"
           onChange={props.update} />
+        <hr />
         <h3> {props.txt} </h3>
+        <hr />
+        <Button> I <Heart /> React </Button>
       </div>    
     )
 }
+
+/* Accessing nested child components */
+class Button extends React.Component {
+  render() {
+    return <button> {this.props.children} </button>    
+  }
+}
+
+const Heart = () => <span className="glyphicon glyphicon-heart"></span>
 
 export default App
