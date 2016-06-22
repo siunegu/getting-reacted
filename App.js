@@ -34,7 +34,8 @@ class App extends React.Component {
         <br />        
         <Slider ref="blue" update={this.update} />
         {this.state.blue}
-        <br />        
+        <br />    
+        <TimerWrapper />
       </div>
     )
   }
@@ -77,5 +78,61 @@ class Button extends React.Component {
 }
 
 const Heart = () => <span className="glyphicon glyphicon-heart"></span>
+
+/* Component Lifecycle */
+class Timer extends React.Component {
+  constructor(args) {
+    super();
+    this.state = { val: 0 };
+    this.update = this.update.bind(this);
+  }
+
+  // methods
+  update() {
+    this.setState({ val: this.state.val + 1 })
+  }
+  componentWillMount() {
+    this.setState({ m: 2 })
+  }
+  render() {
+    console.log('rendering!')
+    return(
+      <button onClick={this.update}> 
+        {this.state.val * this.state.m}
+      </button> 
+
+    )
+  }
+  componentDidMount() {
+    this.inc = setInterval(this.update, 1000)
+  }
+  componentWillUnmount() {
+    clearInterval(this.inc)
+  }
+}
+
+class TimerWrapper extends React.Component {
+  constructor(args) {
+    super();
+  }
+  mount() {
+    console.log('mounting timer')
+    ReactDOM.render(<Timer />, document.getElementById('increment-timer'))
+  }
+  unmount() {
+    console.log('unmounting timer')
+    ReactDOM.unmountComponentAtNode( document.getElementById('increment-timer') )
+  }
+  render() {
+    return(
+      <div>
+        <button onClick={this.mount.bind(this)}>Mount</button>
+        <button onClick={this.unmount.bind(this)}>Unmount</button>
+        <div id="increment-timer">
+        </div>
+      </div>
+      )
+  }
+}
 
 export default App
