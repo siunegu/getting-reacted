@@ -1,0 +1,23 @@
+{
+  "name": "es6-react-setup",
+  "version": "1.0.0",
+  "description": "An intro to es6 with react",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "webpack-dev-server"
+  },
+  "keywords": [
+    "tutorial",
+    "test",
+    "react",
+    "es6"
+  ],
+  "author": "Eugenius Lai",
+  "license": "MIT"
+}
